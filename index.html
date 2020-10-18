@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Happy Birthday!</title>
+	<style>
+
+		div {
+			/* border: 2px solid white; */
+		}
+
+		* {
+			overflow: hidden;
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+
+		html, body {
+			height: 90%;
+			background-color: #181a1b;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#fw {
+			/* background-color: aqua; */
+			background-image: url('fw.gif');
+			background-repeat: no-repeat;
+			background-size: 100%;
+			/* position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%; */
+			width: 40%;
+			height: 200px;
+			/* border: 2px solid white; */
+		}
+
+		#msg {
+			color: lightgreen;
+			/* background-color: lightsalmon; */
+			transition-property: transform;
+			transition-property: -webkit-transform;
+			transition-duration: 0.5s;
+			transition-delay: 0s;
+			width: 50%;
+			font-size: 30px;
+		
+		}
+
+		
+		#msg, #age {
+			/* background-color: aquamarine; */
+			text-align: center;
+			font-weight: bold;
+			z-index: 2;
+		}
+
+		@media screen and (min-width: 1000px) {
+			#msg, #age {
+				font-size: 100px;
+			}
+
+			html, body {
+			height: 100%;
+		}
+		}
+
+		#age {
+			/* background-color: yellow; */
+			font-size: 50px;
+			color: lightpink;
+			z-index: 2;
+		}
+	</style>
+</head>
+<body>
+	<div id=fw>
+		<!-- <img src="fw.gif"> -->
+	</div>
+	<div id=msg>
+		Happy Birthday, <br> Sena!
+	</div>
+	<div id=age>
+		19
+	</div>
+
+	<script>
+
+		let age = document.getElementById("age")
+		let msg = document.getElementById("msg")
+
+
+		setInterval(() => {
+				// age.style.transform = 'scale(0.9)'
+				msg.style.webkitTransform = msg.style.transform = 'scale(1.1)'
+
+				setTimeout(() => {
+					// age.style.transform = 'scale(1.1)'
+					msg.style.webkitTransform = msg.style.transform = 'scale(1)'
+				}, 1000)
+			
+		}, 2000)
+
+
+		window.addEventListener("deviceorientation", function(e) {
+			// remember to use vendor-prefixed transform property
+			age.style.webkitTransform = age.style.transform =
+				"rotateZ(" + ( e.alpha - 0 ) + "deg) " +
+				"rotateX(" + e.beta + "deg) " +
+				"rotateY(" + ( -e.gamma ) + "deg)";
+		})
+	</script>
+</body>
+</html>
